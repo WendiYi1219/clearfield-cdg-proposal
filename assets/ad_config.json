@@ -1,0 +1,718 @@
+{
+  "project": {
+    "project_name": "晴野 CLEARFIELD 600ml 保温杯 · 腾讯信息流广告",
+    "brand": {
+      "chinese": "晴野",
+      "english": "CLEARFIELD"
+    },
+    "product": "CLEARFIELD 600ml 保温杯",
+    "platform": "腾讯信息流广告 / 手机端",
+    "aspect_ratio": "9:16",
+    "duration_seconds": {
+      "target_min": 15,
+      "target_max": 20
+    },
+    "master_script": "CLEARFIELD 保温杯广告脚本.pdf",
+    "core_narrative": "城市出发 → 进入山野 → 冷热饮用 → 跨越昼夜 → 次日依然恒温",
+    "core_selling_points": [
+      "600ml 容量",
+      "轻松放入背包侧袋",
+      "冷热皆宜",
+      "24 小时长效恒温"
+    ],
+    "communication_principle": "无声观看也能完整理解产品卖点",
+    "output_format": "vertical social media advertisement"
+  },
+
+  "product_identity": {
+    "priority": "highest — overrides all style references",
+    "capacity_ml": 600,
+    "description": "Tall, slender cylindrical insulated bottle with straight sides and no tapering. Uniform matte sage-green powder-coated finish on body and cap. Brushed stainless steel circular top plate on lid. Integrated rectangular loop handle on cap side, same green material.",
+    "body": {
+      "shape": "cylindrical, straight sides, no taper",
+      "finish": "matte powder-coated",
+      "color": "muted sage green (desaturated olive green)",
+      "color_hex_approximate": "unspecified — match product reference exactly",
+      "aspect_ratio": "high — significantly taller than wide, consistent with 600ml portable capacity"
+    },
+    "lid": {
+      "type": "screw-on cap, same diameter as body",
+      "top_surface": "flat circular brushed stainless steel plate",
+      "side_finish": "slightly glossier than body, same sage green color",
+      "handle": {
+        "type": "integrated rectangular loop (D-ring shape)",
+        "material": "same sage green as cap",
+        "position": "protrudes from one side of lid"
+      },
+      "seam": "distinct horizontal seam where lid meets bottle body",
+      "height_ratio": "lid approximately 1/5 of total bottle height"
+    },
+    "logo": {
+      "content": {
+        "english": "CLEARFIELD",
+        "chinese": "晴野",
+        "graphic": "thin horizontal wavy line between English and Chinese text, resembling stylized mountain or wave"
+      },
+      "font": "clean white sans-serif, English in all caps",
+      "color": "pure white",
+      "placement": "near bottom of bottle front face, centered",
+      "size": "small relative to bottle height — match product reference exactly",
+      "visibility": "visible on front and 3/4 views only; back view has no logo"
+    },
+    "inner_rim": {
+      "material": "stainless steel",
+      "visibility": "visible from top view at opening"
+    },
+    "immutable_attributes": [
+      "杯体造型",
+      "尺寸与长宽比例",
+      "材质",
+      "产品颜色",
+      "杯盖造型与结构",
+      "Logo 大小",
+      "Logo 位置",
+      "产品整体设计语言"
+    ],
+    "scale_reference": {
+      "capacity": "600ml",
+      "real_world_size": "standard 600ml portable thermos — must fit naturally in normal outdoor backpack side pocket without appearing oversized or unnaturally small",
+      "human_hand_ratio": "held comfortably in one adult hand",
+      "backpack_side_pocket": "must enter completely and naturally — not forced, not floating, not visibly too large for pocket"
+    }
+  },
+
+  "reference_assets": {
+    "product_references": {
+      "folder": "references/product/",
+      "priority": "highest — defines product identity",
+      "files": [
+        {
+          "filename": "gemini-产品图 copy.jpeg",
+          "description": "Multi-angle product sheet: front, side, back, top, and 3/4 views on white background. Definitive source for shape, color, logo placement, lid structure, handle, and proportions.",
+          "views_included": ["front", "side", "back", "top", "three_quarter"]
+        }
+      ],
+      "usage_rule": "All scenes must render CLEARFIELD matching this reference. Product reference overrides style reference whenever conflict occurs."
+    },
+    "style_references": {
+      "folder": "references/style/",
+      "priority": "art direction only — does NOT define product identity",
+      "files": [
+        {
+          "filename": "IMG_0863.jpg",
+          "primary_use": "open mountain / trail movement scenes",
+          "extracted_qualities": [
+            "directional natural sunlight with warm late-afternoon quality",
+            "high contrast between sunlit grass and deep shadows",
+            "muted organic greens and earthy clothing tones",
+            "dynamic diagonal group composition conveying upward movement",
+            "medium-wide framing with grand mountain background",
+            "authentic motion, not static posing"
+          ]
+        },
+        {
+          "filename": "IMG_0865.jpg",
+          "primary_use": "journey / transition / road-trip atmosphere",
+          "extracted_qualities": [
+            "soft diffused natural daylight, no harsh shadows",
+            "frame-within-a-frame composition (mirror reflection)",
+            "muted earthy palette: forest green, slate grey, cream, beige",
+            "shallow depth of field isolating subject",
+            "quiet luxury outdoor aesthetic, serene and aspirational",
+            "sense of travel and exploration"
+          ]
+        },
+        {
+          "filename": "IMG_0872.jpg",
+          "primary_use": "camping / rest / alpine break scenes",
+          "extracted_qualities": [
+            "bright diffused high-altitude daylight, wrap-around soft light",
+            "desaturated earthy tones: slate grey, sage green, limestone white",
+            "very shallow depth of field, intimate first-person feel",
+            "frame-within-a-frame via tent opening",
+            "functional gear shown in active use",
+            "serene post-activity reward atmosphere"
+          ]
+        },
+        {
+          "filename": "IMG_0882.jpg",
+          "primary_use": "forest hiking / drinking action / character reference",
+          "extracted_qualities": [
+            "soft diffused daylight in shaded forest, balanced exposure",
+            "organic palette: deep forest green, cool stone grey, muted earth tones",
+            "shallow DOF, subjects sharp, background foliage softly blurred",
+            "medium shot, rule-of-thirds placement",
+            "natural drinking action mid-use",
+            "contemporary technical hiking apparel on young East Asian subjects",
+            "refreshing, serene, authentic outdoor lifestyle"
+          ]
+        }
+      ],
+      "usage_rule": "Extract lighting, color, atmosphere, composition, and photography style only. Do NOT copy products, brands, logos, or packaging visible in style references."
+    }
+  },
+
+  "global_visual_direction": {
+    "source": "Synthesized from style references IMG_0863, IMG_0865, IMG_0872, IMG_0882; aligned with master script direction",
+    "overall_aesthetic": "Premium outdoor lifestyle commercial — clean, restrained, authentic, young urban outdoor sensibility. Combines lifestyle advertising atmosphere with clear product demonstration.",
+    "lighting": {
+      "primary_quality": "natural daylight, predominantly soft and diffused",
+      "scene_variants": {
+        "urban_morning": "clean morning natural light entering interior space — bright, fresh, low harshness (per master script)",
+        "open_mountain": "directional warm sunlight with visible shadows on terrain — golden-hour accent possible (ref: IMG_0863)",
+        "forest_shaded": "soft diffused overcast or canopy-filtered light, medium-low contrast (ref: IMG_0882, IMG_0865)",
+        "alpine_camping": "bright diffused high-altitude light, wrap-around, neutral to slightly cool (ref: IMG_0872)",
+        "night_timelapse": "natural night sky progression with tent interior warm accent light"
+      },
+      "avoid": ["studio flash", "hard artificial lighting", "overdramatic rim light", "neon color gels"]
+    },
+    "color_palette": {
+      "dominant": ["sage green", "forest green", "olive green", "slate grey", "limestone white", "muted earth brown"],
+      "accent": ["cream", "beige", "warm skin tones", "subtle maroon or dusty purple in clothing — optional, not required"],
+      "product_color": "muted sage green — fixed, from product reference",
+      "grading": "naturalistic, slightly desaturated, filmic but restrained — not hyper-saturated or neon"
+    },
+    "color_technical": {
+      "contrast": "medium-low in shaded/forest/interior scenes; medium-high in open sunlit mountain scenes",
+      "saturation": "naturalistic, leaning muted/earthy",
+      "color_temperature": "neutral to slightly warm in sunlit open scenes; neutral to slightly cool in alpine/high-altitude scenes"
+    },
+    "atmosphere": "Fresh, adventurous, serene, aspirational quiet-outdoor-luxury. Real camping and hiking life, not staged studio outdoors.",
+    "photography_style": {
+      "genre": "high-end commercial outdoor lifestyle photography",
+      "depth_of_field": "shallow to medium — subjects and product sharp, backgrounds naturally softened",
+      "texture_emphasis": "matte technical fabrics, natural rock/grass/forest surfaces, organic environmental detail",
+      "motion": "authentic human movement preferred over static posing",
+      "restraint": "cinematic but restrained — not overly stylized or hyper-commercial"
+    },
+    "composition_tendencies": {
+      "framing": "medium shots and medium close-ups for character+product; product hero shots centered",
+      "techniques": ["rule of thirds", "dynamic diagonals for movement", "frame-within-a-frame optional for intimate moments", "product as visual anchor"],
+      "human_product_relationship": "functional and integrated — product shown in natural use during outdoor activity, not isolated studio object"
+    },
+    "environmental_feeling": {
+      "urban": "clean modern city residence, morning light, young couple preparing for weekend outdoors",
+      "transition": "sense of journey from city to nature",
+      "mountain_trail": "lush green alpine meadows, dirt trails, vast mountain ridges",
+      "forest": "dense green foliage, rocky resting spots",
+      "camping": "tent beside rocks, open mountain vista, night sky, sunrise over peaks"
+    },
+    "global_visual_keywords_from_script": [
+      "premium outdoor lifestyle commercial",
+      "clean natural lighting",
+      "fresh morning atmosphere",
+      "realistic product photography",
+      "young urban outdoor lifestyle",
+      "seamless match cut",
+      "visual storytelling",
+      "product-focused composition",
+      "cinematic but restrained",
+      "premium Chinese lifestyle brand aesthetic",
+      "vertical social media advertisement"
+    ]
+  },
+
+  "character_consistency": {
+    "cast": {
+      "female": {
+        "role": "primary product user — pours water, inserts bottle in pocket, hikes, drinks, places bottle, re-drinks after night",
+        "appearance": "young adult, fit, healthy — East Asian appearance consistent with style reference IMG_0882",
+        "wardrobe": "contemporary casual-to-technical outdoor clothing appropriate to each scene (urban morning casual → hiking technical layers)",
+        "unspecified": ["exact hair style", "exact facial features", "specific clothing brands"]
+      },
+      "male": {
+        "role": "lifestyle background / companion — packs gear, walks alongside, hikes",
+        "appearance": "young adult, fit, healthy — East Asian appearance consistent with style reference IMG_0882",
+        "wardrobe": "contemporary technical hiking apparel — light jacket, cap optional, outdoor shorts or pants",
+        "unspecified": ["exact hair style", "exact facial features", "specific clothing brands"]
+      }
+    },
+    "consistency_rules": [
+      "Same two characters throughout all scenes",
+      "Wardrobe may change logically between urban morning and outdoor scenes",
+      "Characters serve as lifestyle context — visual priority always on CLEARFIELD product",
+      "Natural, unposed body language and authentic movement"
+    ]
+  },
+
+  "mobile_composition_rules": {
+    "format": "9:16 vertical",
+    "product_visibility": "Product must be clearly identifiable on small mobile screens in every scene where it appears",
+    "text": {
+      "size": "明显偏大 — all on-screen text must be large enough to read without zooming on mobile feed",
+      "placement": "within visual safe zones, not cropped by platform UI",
+      "hierarchy": "one primary message per scene — avoid complex multi-line information stacks",
+      "function": "文字只强化关键信息，不代替画面叙事"
+    },
+    "action_clarity": "Core actions must be understandable without sound — pouring, inserting in pocket, hiking, drinking, timelapse, hero product reveal",
+    "scene_discipline": "Each scene carries exactly one primary communication task",
+    "safe_area": "Keep critical product and text away from top/bottom edges where platform UI may overlay — exact pixel margins unspecified"
+  },
+
+  "scenes": {
+    "scene_01": {
+      "scene_id": "scene_01",
+      "title": "清晨 · 城市家中 · 出发",
+      "narrative_purpose": "Establish 600ml capacity and side-pocket portability — 装得够，同时好携带",
+      "duration_seconds": {
+        "target": 4,
+        "range": "3–4"
+      },
+      "environment": "Modern urban apartment/residence interior, weekend morning packing scene",
+      "time_of_day": "清晨 — early morning natural light",
+      "characters": {
+        "female": "pours water into CLEARFIELD, picks up filled bottle, inserts into backpack side pocket",
+        "male": "packing outdoor gear in background as lifestyle context"
+      },
+      "product_state": "Empty → being filled with water → full, capped, inserted in backpack side pocket",
+      "action_sequence": [
+        "Morning natural light enters urban home",
+        "Couple packing weekend outdoor gear — characters as lifestyle background",
+        "Female pours water into CLEARFIELD thermos",
+        "Brief translucent cup cross-section visual overlay showing volume + large '600ml' text",
+        "Female picks up filled thermos and smoothly inserts it into outdoor backpack side pocket",
+        "Cut to product close-up showing credible scale relationship between 600ml bottle and side pocket — bottle enters completely, naturally, without appearing bulky"
+      ],
+      "shot_type": ["medium wide establishing", "medium action", "product close-up"],
+      "camera": {
+        "movement": "stable with gentle push-in toward product during close-up",
+        "focus": "visual priority always on CLEARFIELD — characters soft background when appropriate"
+      },
+      "composition": {
+        "priority_subject": "CLEARFIELD thermos",
+        "key_frame": "close-up of bottle entering backpack side pocket — scale relationship clearly readable on mobile",
+        "aspect_ratio": "9:16 vertical — product centered or upper-center in close-up"
+      },
+      "lighting": "Clean morning natural light entering through windows — bright, fresh, soft shadows (master script + urban morning variant from global_visual_direction)",
+      "transition": {
+        "out": "cut to scene_02",
+        "note": "end on product-in-pocket close-up or medium shot ready for match cut anchor"
+      },
+      "on_screen_text": {
+        "lines": [
+          { "text": "600ml", "size": "large", "timing": "during cross-section / capacity moment" },
+          { "text": "轻松装进背包侧袋", "size": "large", "timing": "during side pocket insertion / close-up" }
+        ]
+      },
+      "key_message": "装得够，同时好携带",
+      "visual_effects": {
+        "cross_section_overlay": {
+          "type": "简洁的半透明杯体剖面视觉",
+          "purpose": "直观表现 600ml 容量",
+          "duration": "brief — momentary, not sustained"
+        }
+      },
+      "reference_usage": {
+        "product_reference": "gemini-产品图 copy.jpeg — definitive bottle shape, color, logo, lid, handle for all product renders",
+        "style_reference": "IMG_0882 — soft natural interior-adjacent daylight quality; IMG_0865 — clean restrained lifestyle feel"
+      },
+      "consistency_requirements": [
+        "CLEARFIELD must match product reference exactly",
+        "600ml bottle must appear full adult-hand scale",
+        "Side pocket insertion must look physically credible — not shrunk product",
+        "Logo visible on front-facing product angles"
+      ],
+      "negative_constraints": [
+        "Do not shrink bottle to exaggerate portability",
+        "Do not show bottle failing to fit or appearing comically large",
+        "Do not redesign product based on style references",
+        "Do not use exaggerated studio lighting"
+      ]
+    },
+
+    "scene_02": {
+      "scene_id": "scene_02",
+      "title": "城市 → 山野 · Match Cut",
+      "narrative_purpose": "Visual transition from city departure to outdoor adventure — product as constant anchor",
+      "duration_seconds": {
+        "target": 3,
+        "range": "2–3"
+      },
+      "environment": "Urban street → open mountain wilderness — seamless spatial transition",
+      "time_of_day": "morning, continuous from scene_01",
+      "characters": {
+        "female": "carries backpack with CLEARFIELD in side pocket, walks with male",
+        "male": "walks alongside"
+      },
+      "product_state": "secured in backpack side pocket, visible throughout",
+      "action_sequence": [
+        "Female shoulders backpack, couple exits together",
+        "Camera gradually locks onto CLEARFIELD in backpack side pocket",
+        "Match Cut: bottle + backpack position + walking direction held constant",
+        "Environment rapidly transitions: city street → open mountain landscape",
+        "CLEARFIELD remains stable in side pocket throughout transition"
+      ],
+      "shot_type": "tracking medium shot tightening to product anchor frame",
+      "camera": {
+        "movement": "follow walk, then stabilize on side pocket product anchor for match cut",
+        "match_cut_anchors": [
+          "CLEARFIELD bottle position in frame",
+          "backpack side pocket location",
+          "character walking direction"
+        ]
+      },
+      "composition": {
+        "visual_anchor": "CLEARFIELD in backpack side pocket — fixed reference point for match cut",
+        "aspect_ratio": "9:16 — bottle in side pocket occupies clear readable zone"
+      },
+      "lighting": {
+        "urban": "soft morning city daylight (ref: IMG_0865 — diffused, muted)",
+        "mountain": "opens to warm directional mountain light (ref: IMG_0863 — golden natural sunlight on green terrain)"
+      },
+      "transition": {
+        "type": "Match Cut",
+        "mechanism": "Fixed product/backpack anchor with environment swap",
+        "out": "cut to scene_03"
+      },
+      "on_screen_text": {
+        "lines": []
+      },
+      "key_message": "从城市出走，进入山野 — conveyed purely through visual transition, no text required",
+      "visual_effects": {
+        "match_cut": {
+          "fixed_elements": ["CLEARFIELD bottle", "backpack side pocket", "walking direction"],
+          "changing_elements": ["background environment: city → mountain"]
+        }
+      },
+      "reference_usage": {
+        "product_reference": "gemini-产品图 copy.jpeg — bottle in side pocket must match product identity",
+        "style_reference": "IMG_0865 — journey/transition mood and soft urban light; IMG_0863 — open mountain destination lighting and green landscape"
+      },
+      "consistency_requirements": [
+        "Bottle size in side pocket must match scene_01 scale exactly",
+        "No product redesign during environment transition",
+        "Walking motion feels continuous across cut"
+      ],
+      "negative_constraints": [
+        "Do not break match cut alignment — bottle must not jump position or scale",
+        "Do not copy car/mirror composition from IMG_0865 — extract mood only",
+        "No text overlay — scene communicates through visual storytelling alone"
+      ]
+    },
+
+    "scene_03": {
+      "scene_id": "scene_03",
+      "title": "山野活动 · 冷 × 热",
+      "narrative_purpose": "Establish cold/hot dual insulation capability — 冷热皆宜 · 持久恒温",
+      "duration_seconds": {
+        "target": 4,
+        "range": "3–4"
+      },
+      "environment": "Open mountain trail / alpine meadow — expansive outdoor hiking setting",
+      "time_of_day": "daytime",
+      "characters": {
+        "female": "retrieves CLEARFIELD from side pocket and drinks while hiking",
+        "male": "hiking alongside in background"
+      },
+      "product_state": "in use — drinking; then split into cold/hot visual states; merges back to single bottle",
+      "action_sequence": [
+        "Couple hiking in open mountain landscape",
+        "Female naturally retrieves CLEARFIELD from backpack side pocket",
+        "Female drinks from bottle while walking",
+        "Split Screen activates — left and right halves",
+        "Left: cold drink state — restrained cool cup surface, light condensation/fresh vapor, cool-toned environment feedback",
+        "Right: hot drink state — subtle natural steam, warm environment feedback",
+        "Both sides show IDENTICAL CLEARFIELD product shape and proportions",
+        "Split Screen merges back into single CLEARFIELD bottle"
+      ],
+      "shot_type": ["medium wide hiking", "medium drinking action", "split screen dual panel", "merge to single product medium close-up"],
+      "camera": {
+        "movement": "steady follow during hike; static during split screen",
+        "focus": "product sharp in all split-screen panels"
+      },
+      "composition": {
+        "split_screen": {
+          "layout": "left-right vertical split within 9:16 frame",
+          "product_consistency": "identical CLEARFIELD on both sides — same shape, size, color, logo position",
+          "differentiation": "environmental and surface-state cues only (cold vs warm) — NOT different product designs"
+        }
+      },
+      "lighting": {
+        "base": "directional natural mountain daylight (ref: IMG_0863)",
+        "left_panel": "slightly cooler color temperature, crisp clarity",
+        "right_panel": "slightly warmer color temperature, soft warmth"
+      },
+      "transition": {
+        "in": "cut from scene_02",
+        "internal": "split screen expand → merge",
+        "out": "cut to scene_04"
+      },
+      "on_screen_text": {
+        "lines": [
+          { "text": "冷热皆宜 · 持久恒温", "size": "large", "timing": "during or after split screen merge" }
+        ]
+      },
+      "key_message": "快速建立「冷/热都能够稳定保温」的认知，为 24H 长效恒温证明铺垫",
+      "visual_effects": {
+        "split_screen": {
+          "type": "left-right split",
+          "left_cold_cues": ["restrained cool cup-wall appearance", "light fresh condensation or cool vapor", "cool-toned environmental feedback"],
+          "right_hot_cues": ["subtle natural steam", "warm environmental feedback"],
+          "merge": "both panels collapse back to single CLEARFIELD"
+        }
+      },
+      "reference_usage": {
+        "product_reference": "gemini-产品图 copy.jpeg — BOTH split panels must use identical product identity",
+        "style_reference": "IMG_0863 — open mountain hiking energy and lighting; IMG_0882 — natural drinking action and medium-shot framing"
+      },
+      "consistency_requirements": [
+        "Split screen left and right must show the SAME CLEARFIELD design — not two variants",
+        "Product shape, logo, color, lid, handle unchanged across panels",
+        "Cold/hot differentiation through atmosphere and subtle surface cues only"
+      ],
+      "negative_constraints": [
+        "Do not create two different bottle designs for left/right panels",
+        "Do not copy the clear plastic bottle from IMG_0882 — use CLEARFIELD product reference only",
+        "Do not over-exaggerate steam or frost effects",
+        "No additional text beyond specified on-screen copy"
+      ]
+    },
+
+    "scene_04": {
+      "scene_id": "scene_04",
+      "title": "黄昏 → 次日清晨 · 24H 恒温证明",
+      "narrative_purpose": "Prove 24-hour temperature retention through time passage — 24H 长效恒温",
+      "duration_seconds": {
+        "target": 6,
+        "range": "5–6"
+      },
+      "environment": "Mountain campsite — tent beside rock, open vista, night sky, sunrise",
+      "time_of_day": "黄昏 → 日落 → 夜幕 → 星空/星轨 → 深夜 → 天空渐亮 → 黎明 → 次日日出",
+      "characters": {
+        "female": "places bottle on rock at dusk, exits frame; re-enters at sunrise to pick up and drink",
+        "male": "unspecified — not required in this scene per script"
+      },
+      "product_state": "placed stationary on rock → unchanged through timelapse → picked up, opened, drunk from at sunrise",
+      "action_sequence": [
+        "Evening: female arrives at tent, casually places CLEARFIELD on rock, exits frame",
+        "Camera locks to fixed position — CLEARFIELD becomes sole visual anchor",
+        "Time-lapse sequence centered on product: dusk → sunset → night → stars/star trails → deep night → dawn light → sunrise",
+        "CLEARFIELD position, angle, scale, and appearance remain completely stable throughout",
+        "Tent in background lights up with warm interior glow after dark",
+        "Large mobile text '24H' and '长效恒温' appear near product as time progresses",
+        "Sunrise illuminates open mountain landscape",
+        "Female emerges from tent, picks up same CLEARFIELD, opens lid, drinks naturally against mountain backdrop"
+      ],
+      "shot_type": "fixed locked-off wide/medium — product-centered timelapse, then medium action at sunrise",
+      "camera": {
+        "movement": "completely static during timelapse — no drift, no zoom, no reframing",
+        "focus": "CLEARFIELD sharp and stable at center of frame throughout timelapse"
+      },
+      "composition": {
+        "anchor": "CLEARFIELD on rock — dead center or upper-center of 9:16 frame",
+        "background": "tent + mountain vista + sky time progression",
+        "text_placement": "near product, large and mobile-readable"
+      },
+      "lighting": {
+        "timelapse_progression": [
+          "warm dusk golden light",
+          "sunset orange-pink horizon",
+          "deep blue night",
+          "star field / star trails",
+          "pre-dawn blue hour",
+          "warm sunrise gold illuminating landscape"
+        ],
+        "tent_accent": "warm interior glow visible after dark — camping life authenticity (ref: IMG_0872 camping atmosphere)",
+        "product_lighting": "product consistently lit readable at all times — not lost in darkness"
+      },
+      "transition": {
+        "in": "cut from scene_03",
+        "internal": "timelapse → live action at sunrise",
+        "out": "cut to scene_05"
+      },
+      "on_screen_text": {
+        "lines": [
+          { "text": "24H", "size": "very large", "timing": "appears progressively during timelapse" },
+          { "text": "长效恒温", "size": "very large", "timing": "appears alongside or after 24H during timelapse" }
+        ]
+      },
+      "key_message": "经过漫长的一夜，饮用体验依然稳定 — understandable without sound",
+      "visual_effects": {
+        "timelapse": {
+          "type": "fixed-camera time-lapse",
+          "fixed_elements": ["CLEARFIELD position", "angle", "scale", "appearance", "rock placement"],
+          "changing_elements": ["sky", "ambient light", "stars", "sunrise", "tent interior light"],
+          "duration_coverage": " dusk through next morning sunrise"
+        }
+      },
+      "reference_usage": {
+        "product_reference": "gemini-产品图 copy.jpeg — product must not morph or drift during timelapse",
+        "style_reference": "IMG_0872 — alpine camping atmosphere, tent context, serene post-activity feel; IMG_0863 — sunrise mountain landscape quality"
+      },
+      "consistency_requirements": [
+        "Product absolutely static in frame position during timelapse — zero drift",
+        "Same bottle identity from dusk to sunrise",
+        "Drinking action at end must show same product as timelapse anchor"
+      ],
+      "negative_constraints": [
+        "Do not move camera during timelapse",
+        "Do not allow product to change size, color, or shape across time periods",
+        "Do not use exaggerated sci-fi time effects",
+        "Do not require sound to understand 24H message"
+      ]
+    },
+
+    "scene_05": {
+      "scene_id": "scene_05",
+      "title": "Ending · Hero Shot + Brand",
+      "narrative_purpose": "Brand closure — product hero reveal with slogan and CTA",
+      "duration_seconds": {
+        "target": 3,
+        "range": "3–4"
+      },
+      "environment": "Open sunlit mountain landscape — vast, clean, panoramic",
+      "time_of_day": "daytime — sunny clear conditions",
+      "characters": {
+        "female": "none — product only",
+        "male": "none — product only"
+      },
+      "product_state": "pristine hero presentation — full bottle, cap on, logo visible",
+      "action_sequence": [
+        "Cut to CLEARFIELD hero shot",
+        "Product centered, complete, sharp, occupying visual center of 9:16 frame",
+        "Background: sunlit expansive clean mountain landscape",
+        "Brand logo graphic curve visually echoes/rhymes with distant mountain silhouette — 晴野 mountain-clearfield connection",
+        "Brand name, slogan, and CTA appear as on-screen text"
+      ],
+      "shot_type": "product hero shot — medium close-up to medium, product-dominant",
+      "camera": {
+        "movement": "static or imperceptibly slow push-in",
+        "focus": "product tack sharp, background softly blurred"
+      },
+      "composition": {
+        "product_placement": "absolute visual center of 9:16 frame",
+        "background": "sunlit open mountain vista — clean, uncluttered",
+        "brand_graphic": "logo curve aligned with mountain contour for visual rhyme",
+        "text_zones": "brand info and CTA in lower or upper safe zones, large mobile-readable type"
+      },
+      "lighting": "bright clean natural sunlight on product — fresh, premium, clear (ref: IMG_0863 open mountain light quality; master script hero direction)",
+      "transition": {
+        "in": "cut from scene_04",
+        "out": "end card hold — final frame"
+      },
+      "on_screen_text": {
+        "lines": [
+          { "text": "晴野 CLEARFIELD", "size": "large", "role": "brand name" },
+          { "text": "陪你从城市出走，到山野的晴天。", "size": "large", "role": "slogan" },
+          { "text": "点击了解更多", "size": "large", "role": "CTA" }
+        ]
+      },
+      "key_message": "Brand identity closure — 晴野 CLEARFIELD as outdoor lifestyle companion from city to clear mountain day",
+      "visual_effects": {
+        "logo_mountain_rhyme": {
+          "description": "品牌 Logo 的视觉曲线与远处山野轮廓自然产生呼应/重合",
+          "purpose": "connect brand name 晴野 (clear field) with mountain landscape imagery"
+        }
+      },
+      "reference_usage": {
+        "product_reference": "gemini-产品图 copy.jpeg — hero product render source, front/3/4 view preferred",
+        "style_reference": "IMG_0863 — sunlit mountain panorama background quality; extract open landscape feel only"
+      },
+      "consistency_requirements": [
+        "Product must be identical to all previous scenes",
+        "Logo on product matches product reference placement and design",
+        "Brand graphic/text is separate from product logo — both may appear"
+      ],
+      "negative_constraints": [
+        "Do not introduce new product variants or colors",
+        "Do not use studio white background — must be outdoor mountain context per script",
+        "Do not overcrowd frame with multiple messages",
+        "Avoid exaggerated commercial glow or lens flare"
+      ]
+    }
+  },
+
+  "global_consistency_rules": {
+    "product_consistency": {
+      "rule": "CLEARFIELD must remain identical across all 5 scenes",
+      "locked_attributes": [
+        "杯体造型",
+        "尺寸与长宽比例",
+        "材质",
+        "产品颜色",
+        "杯盖造型与结构",
+        "Logo 大小",
+        "Logo 位置",
+        "产品整体设计语言"
+      ],
+      "reference_priority": "Product Reference > Master Script > Style Reference"
+    },
+    "scale_and_physical_credibility": {
+      "rule": "Human, hand, bottle, and backpack proportions must remain physically credible throughout",
+      "critical_shot": "600ml bottle entering backpack side pocket — must look natural every time bottle appears in pocket",
+      "prohibited": [
+        "Shrinking product to exaggerate portability",
+        "Enlarging product in close-up then showing smaller in wide shot",
+        "Impossible hand-to-bottle size ratios"
+      ]
+    },
+    "visual_storytelling": {
+      "priority_order": [
+        "人物动作",
+        "产品状态",
+        "构图",
+        "环境变化",
+        "Match Cut",
+        "Split Screen",
+        "Time-lapse"
+      ],
+      "text_role": "文字只负责强化最关键的信息，而不是代替画面解释故事"
+    },
+    "style_reference_boundary": {
+      "allowed_from_style_refs": [
+        "lighting",
+        "color palette / color grading",
+        "atmosphere",
+        "composition",
+        "photography style",
+        "environmental feeling",
+        "visual texture",
+        "overall art direction"
+      ],
+      "forbidden_from_style_refs": [
+        "product shape",
+        "product color",
+        "brand logos on other products",
+        "packaging design",
+        "specific products visible in reference photos"
+      ]
+    },
+    "scene_order": "scene_01 → scene_02 → scene_03 → scene_04 → scene_05 — fixed per master script, do not reorder"
+  },
+
+  "negative_constraints": {
+    "product": [
+      "产品形变",
+      "Logo 漂移",
+      "杯体忽大忽小",
+      "杯盖结构变化",
+      "AI 自行重新设计产品",
+      "颜色变化",
+      "比例漂移",
+      "Split Screen 左右出现两个不同设计版本"
+    ],
+    "visual_style": [
+      "夸张商业棚拍感",
+      "过度电影化",
+      "过度慢动作",
+      "复杂但没有信息价值的运镜",
+      "无意义装饰镜头",
+      "neon 色彩",
+      "hard studio flash",
+      "hyper-saturated grading"
+    ],
+    "scale": [
+      "不真实的人体/背包/产品尺度",
+      "为表现便携而人为缩小产品",
+      "产品特写后尺寸在后续镜头中发生变化"
+    ],
+    "content": [
+      "与核心产品功能无关的视觉效果",
+      "依赖声音才能理解的卖点表达",
+      "过小字幕",
+      "复杂信息层级",
+      "复制 style reference 中其他品牌/产品/包装"
+    ],
+    "overall_tone": "整体应保持真实、清透、高级、克制、年轻"
+  }
+}

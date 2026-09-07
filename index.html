@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>晴野 CLEARFIELD · 2026 设计提案</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafafa;
+      --text: #1a1a1a;
+      --muted: #666;
+      --light: #999;
+      --accent: #4a6741;
+      --pros-color: #4a6741;
+      --cons-color: #c0392b;
+      --border: #e8e8e8;
+      --table-border: #4a6741;
+      --sidebar: 200px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: var(--sidebar);
+      height: 100vh;
+      padding: 40px 0 40px 32px;
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+      overflow-y: auto;
+      z-index: 10;
+    }
+    .sidebar-title {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 32px;
+      color: var(--text);
+    }
+    .sidebar-title small {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--light);
+      margin-top: 4px;
+    }
+    .toc a {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 0;
+      transition: color 0.15s;
+    }
+    .toc a:hover { color: var(--text); }
+    .toc a.active { color: var(--accent); font-weight: 500; }
+
+    /* ── Main content ── */
+    .main {
+      margin-left: var(--sidebar);
+      width: calc(100vw - var(--sidebar));
+      max-width: none;
+      padding: 60px 80px 120px;
+    }
+
+    /* ── Sections ── */
+    section {
+      margin-bottom: 80px;
+      scroll-margin-top: 40px;
+    }
+
+    .section-num {
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 28px;
+      padding-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    h2::before {
+      content: '';
+      width: 6px;
+      height: 28px;
+      background: var(--accent);
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 36px 0 14px;
+      padding: 8px 0 8px 16px;
+      color: #2f2f2f;
+      letter-spacing: 0.01em;
+      border-left: 3px solid var(--accent);
+      background: linear-gradient(90deg, #f0f4ef 0%, transparent 72%);
+      display: block;
+    }
+    h3::before {
+      display: none;
+    }
+
+    p { font-size: 15px; color: var(--muted); margin-bottom: 12px; }
+
+    .cover-hero {
+      text-align: center;
+      padding: 12px 0 56px;
+      margin-bottom: 24px;
+    }
+    .cover-hero-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .cover-eyebrow {
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+    .cover-title {
+      font-size: 40px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .cover-title span {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+    .cover-tagline {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .cover-byline {
+      font-size: 13px;
+      color: var(--light);
+      margin-bottom: 40px;
+    }
+    .cover-video-wrap {
+      width: min(280px, 76vw);
+      margin: 0 auto 14px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #0a0a0a;
+      box-shadow:
+        0 20px 50px rgba(74, 103, 65, 0.1),
+        0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+    .cover-video-wrap video {
+      width: 100%;
+      display: block;
+      margin: 0;
+      max-width: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .cover-video-label {
+      font-size: 12px;
+      color: var(--light);
+      letter-spacing: 0.06em;
+      margin: 0;
+    }
+
+    .brand-logo-fig {
+      margin: 16px 0 24px;
+      max-width: 320px;
+    }
+    .brand-logo-fig img {
+      width: 100%;
+      margin: 0;
+      border-radius: 8px;
+    }
+    .brand-imagery {
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+    }
+
+    .audience-block {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .audience-copy {
+      flex: 1;
+      min-width: 0;
+    }
+    .audience-copy p {
+      margin-bottom: 10px;
+    }
+    .audience-copy p:last-child {
+      margin-bottom: 0;
+    }
+    .audience-lead {
+      color: var(--text);
+      font-size: 15px;
+    }
+    .audience-lead strong {
+      font-weight: 600;
+    }
+    .audience-psy {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .audience-psy-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .audience-psy p {
+      margin-bottom: 0;
+    }
+    .audience-persona {
+      width: 200px;
+      flex-shrink: 0;
+      margin: 0;
+    }
+    .audience-persona img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      margin: 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .audience-persona figcaption {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--light);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .process-appendix {
+      padding-bottom: 48px;
+    }
+    .process-appendix-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    .process-appendix-item {
+      margin: 0;
+    }
+    .process-appendix-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .process-appendix-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      margin: 0;
+      border: none;
+      border-radius: 0;
+    }
+    .process-appendix-caption {
+      margin: 6px 0 0;
+      font-size: 11px;
+      color: var(--light);
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    ul { list-style: none; margin-bottom: 16px; }
+    ul li {
+      font-size: 15px;
+      color: var(--muted);
+      padding: 4px 0 4px 16px;
+      position: relative;
+    }
+    ul li::before { content: "·"; position: absolute; left: 0; color: var(--accent); }
+
+    .chain {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin: 16px 0 24px;
+      font-size: 13px;
+    }
+    .chain span:not(.arr) {
+      background: #eef3ec;
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+    .chain .arr { color: var(--accent); background: none; padding: 0; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 16px 0;
+    }
+
+    .beat {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .beat:last-child { border-bottom: none; }
+    .beat-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .beat-desc { font-size: 14px; color: var(--muted); }
+    .beat-note { font-size: 13px; color: var(--accent); margin-top: 6px; }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+    .flow-step {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .flow-step strong { display: block; font-size: 13px; margin-bottom: 2px; }
+    .flow-step span { font-size: 11px; color: var(--muted); }
+    .flow .arr { color: var(--light); padding: 0 2px; }
+    .flow-principle {
+      font-size: 14px;
+      color: var(--muted);
+      margin: -8px 0 16px;
+      line-height: 1.7;
+    }
+    .flow-loop {
+      background: #fafafa;
+      border: 1px dashed #c8d5c3;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 0 0 28px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .flow-loop strong {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .tool-chain {
+      margin-top: 12px;
+    }
+    .tool-chain-note {
+      font-size: 13px;
+      color: var(--light);
+      margin: 8px 0 28px;
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+
+    .img-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .img-row img { width: 100%; aspect-ratio: 3/4; object-fit: cover; margin: 0; }
+    .img-row figcaption { font-size: 11px; color: var(--light); text-align: center; margin-top: 4px; }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 16px;
+      align-items: center;
+      margin: 16px 0;
+    }
+    .compare-3 {
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+    }
+    .compare figure img {
+      width: 100%;
+      border-radius: 6px;
+      display: block;
+    }
+    .compare .arr { color: var(--light); font-size: 18px; }
+    .compare figcaption { font-size: 12px; color: var(--light); text-align: center; margin-top: 4px; }
+
+    .gen-block {
+      margin: 40px 0 48px;
+    }
+    .gen-block:first-child {
+      margin-top: 24px;
+    }
+    .gen-title-bar {
+      background: #eef3ec;
+      color: var(--accent);
+      font-size: 17px;
+      font-weight: 700;
+      padding: 10px 16px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+    }
+    .gen-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr 1.12fr 0.82fr;
+      grid-template-rows: auto auto;
+      align-items: stretch;
+    }
+    .gen-grid.no-video {
+      grid-template-columns: 72px 1fr 1.12fr 0.82fr;
+    }
+    .gen-grid.no-video .gen-head-left {
+      grid-row: 1 / 3;
+      border-bottom: none;
+    }
+    .gen-head-left {
+      padding: 12px 20px;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      background: #eef3ec;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .gen-hcol {
+      padding: 10px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      background: #fff;
+    }
+    .gen-grid > .gen-hcol:nth-child(4) { border-right: none; }
+    .gen-layout.has-video {
+      display: flex;
+      align-items: stretch;
+      gap: 24px;
+    }
+    .gen-left {
+      width: 200px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .gen-left video {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #000;
+    }
+    .gen-video-placeholder {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light);
+      font-size: 14px;
+    }
+    .gen-layout.has-video .gen-table {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .gen-table {
+      min-width: 0;
+      border: 1.5px solid var(--table-border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .gen-table-head,
+    .gen-table-body {
+      display: grid;
+      grid-template-columns: 1fr 1.12fr 0.82fr;
+      align-items: stretch;
+    }
+    .gen-table-body {
+      flex: 1;
+    }
+    .gen-table-head {
+      background: #f3f5f3;
+    }
+    .gen-table-head .gen-hcol {
+      border-bottom: 1.5px solid var(--table-border);
+      border-right: 1.5px solid var(--table-border);
+      background: #f3f5f3;
+    }
+    .gen-table-head .gen-hcol:last-child { border-right: none; }
+    .gen-table-body .gen-io-col {
+      border-right: 1.5px solid var(--table-border);
+    }
+    .gen-table-body .gen-io-col,
+    .gen-table-body .gen-output-wrap {
+      min-height: 100%;
+      align-self: stretch;
+    }
+    .gen-table-body .gen-io-col:last-of-type { border-right: none; }
+    .gen-video-side {
+      padding: 0;
+      border-right: 1px solid var(--border);
+      background: #fff;
+      align-self: start;
+      overflow: hidden;
+      line-height: 0;
+    }
+    .gen-video-side video {
+      width: 100%;
+      height: auto;
+      display: block;
+      vertical-align: top;
+    }
+    .gen-io-col {
+      padding: 16px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+      border-right: 1.5px solid var(--table-border);
+    }
+    .gen-io-col ul {
+      margin-bottom: 0;
+    }
+    .gen-io-col label,
+    .gen-feedback-col label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+    .gen-io-col img {
+      width: 100%;
+      max-height: 320px;
+      object-fit: contain;
+      border-radius: 6px;
+      margin-top: 8px;
+    }
+    .gen-io-col img.storyboard {
+      max-height: 200px;
+      object-fit: contain;
+    }
+    .gen-io-col .storyboard-fig {
+      margin: 14px 0 0;
+    }
+    .gen-io-col .storyboard-fig figcaption {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+      text-align: center;
+    }
+    .gen-io-col .storyboard-pair {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px;
+      align-items: flex-start;
+    }
+    .gen-io-col .storyboard-pair .storyboard-fig {
+      flex: 1;
+      min-width: 0;
+      margin: 0;
+    }
+    .gen-io-col .storyboard-pair img.storyboard {
+      max-height: 160px;
+      object-fit: contain;
+    }
+    .gen-io-col .storyboard-pair .storyboard-fig figcaption {
+      font-size: 11px;
+      margin-top: 6px;
+    }
+    .gen-io-col .input-keyframe-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      align-items: center;
+    }
+    .gen-io-col .input-keyframe-row .input-fig {
+      flex: 1;
+      min-width: 0;
+      margin: 0;
+    }
+    .gen-io-col .input-keyframe-row img {
+      width: 100%;
+      max-height: 110px;
+      object-fit: contain;
+      display: block;
+    }
+    .gen-io-col .input-keyframe-row .input-arr {
+      color: var(--accent);
+      font-size: 13px;
+      flex-shrink: 0;
+      padding: 0 2px;
+    }
+    .gen-io-col .input-keyframe-row figcaption {
+      font-size: 10px;
+      color: var(--muted);
+      text-align: center;
+    }
+    .gen-io-col .input-fig figcaption {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.4;
+    }
+    .gen-io-col .input-fig-compact img {
+      width: 100%;
+      max-height: 110px;
+      object-fit: contain;
+      margin-top: 6px;
+    }
+    .gen-io-col .input-fig-compact figcaption {
+      margin-top: 4px;
+    }
+    .gen-io-col .input-fig-lg img {
+      width: 100%;
+      max-height: 160px;
+      object-fit: contain;
+      margin-top: 6px;
+    }
+    .gen-io-col .input-fig-lg figcaption {
+      margin-top: 4px;
+    }
+    .gen-io-col .prompt-annotate-compact {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .gen-tag {
+      display: inline-block;
+      background: #fff3cd;
+      color: #7a6520;
+      font-size: 13px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    .gen-input-imgs {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .gen-input-imgs figure {
+      margin: 0;
+      font-size: 11px;
+      color: var(--light);
+      text-align: center;
+    }
+    .gen-input-imgs img {
+      max-width: 120px;
+      max-height: 140px;
+      object-fit: contain;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .gen-output-wrap {
+      padding: 16px;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .gen-output-wrap > label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+    .gen-output-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .gen-output-half {
+      padding: 0;
+      font-size: 14px;
+    }
+    .gen-output-half:first-child {
+      border-right: none;
+      border-bottom: 1.5px dashed var(--table-border);
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+    }
+    .gen-output-half label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    .gen-output-half:has(.pros) label,
+    .gen-output-half:has(.pros) ul li {
+      color: var(--pros-color);
+    }
+    .gen-output-half:has(.pros) ul li::before {
+      color: var(--pros-color);
+    }
+    .gen-output-half:has(.cons) label,
+    .gen-output-half:has(.cons) ul li {
+      color: var(--cons-color);
+    }
+    .gen-output-half:has(.cons) ul li::before {
+      color: var(--cons-color);
+    }
+    .gen-output-half ul { margin: 0; }
+    .gen-output-half ul li { font-size: 14px; padding-left: 14px; }
+    .gen-output-half .placeholder { color: var(--light); font-style: italic; list-style: none; padding-left: 0; }
+    .gen-output-half .placeholder::before { content: none; }
+    .gen-output-shot {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+    }
+    .gen-output-shot img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    video {
+      width: 100%;
+      max-width: 360px;
+      border-radius: 8px;
+      margin: 16px 0;
+      background: #000;
+    }
+
+    .note {
+      background: #fffbe6;
+      border: 1px dashed #e6d080;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #8a7420;
+      margin: 16px 0;
+    }
+
+    .sub-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 16px 0 6px;
+    }
+
+    .sell-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 24px 0 32px;
+    }
+
+    .sell-block {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .sell-block > .sell-title {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text);
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sell-block > .sell-title::before {
+      content: '';
+      width: 4px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .sell-part {
+      margin-bottom: 20px;
+    }
+    .sell-part:last-child { margin-bottom: 0; }
+    .sell-part-label {
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    .sell-part ul { margin-bottom: 0; }
+    .sell-part ul li { font-size: 14px; }
+
+    .target-msg {
+      font-size: 14px;
+      color: var(--accent);
+      margin-top: 12px;
+      padding: 12px 14px;
+      background: var(--accent-light, #eef3ec);
+      border-radius: 6px;
+      border-top: none;
+    }
+
+    .spec-line {
+      font-size: 14px;
+      color: var(--muted);
+      padding: 12px 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin: 12px 0;
+    }
+
+    .story-beats { margin: 20px 0; }
+    .story-beat {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 14px;
+    }
+    .story-beat-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .story-beat-title::before {
+      content: '';
+      width: 4px;
+      height: 16px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .story-beat ul { margin-bottom: 0; }
+    .story-beat ul li { font-size: 14px; padding-left: 14px; }
+    .story-beat .beat-purpose {
+      font-size: 13px;
+      color: var(--accent);
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: #eef3ec;
+      border-radius: 6px;
+    }
+    .story-beat .sub-list {
+      margin: 8px 0 0 16px;
+    }
+    .story-beat .sub-list li {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .storyboard-row {
+      display: grid;
+      grid-template-columns: 400px minmax(0, 1fr);
+      gap: 32px;
+      margin: 16px 0;
+      align-items: end;
+      width: 100%;
+    }
+    .storyboard-row .sb-left .sb-img-box img {
+      max-width: 400px;
+    }
+    .storyboard-row .sb-right {
+      max-width: 720px;
+    }
+    .storyboard-row .sb-right .sb-img-box img {
+      width: 100%;
+      max-width: 100%;
+    }
+    .storyboard-row figure {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+    }
+    .storyboard-row .sb-img-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .storyboard-row figure img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      margin: 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: block;
+    }
+    .storyboard-row figcaption {
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 60px 0;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 32px 24px 80px; }
+      .two-col, .compare, .compare-3, .storyboard-row, .process-appendix-row { grid-template-columns: 1fr; }
+      .audience-block { flex-direction: column; }
+      .audience-persona { width: min(200px, 70vw); margin: 0 auto; }
+      .gen-layout.has-video { flex-direction: column; align-items: center; gap: 16px; }
+      .gen-left { width: 100%; max-width: 240px; }
+      .gen-layout.has-video .gen-table { width: 100%; }
+      .gen-table-head, .gen-table-body { grid-template-columns: 1fr; }
+      .gen-grid, .gen-grid.no-video { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .gen-grid.no-video .gen-head-left { grid-row: auto; border-bottom: 1px solid var(--border); }
+      .gen-hcol { border-right: none; }
+      .gen-io-col { border-right: none; border-bottom: 1.5px solid var(--table-border); }
+      .gen-io-col:not(:last-child), .gen-output-wrap { border-right: none; border-left: none; border-bottom: 1.5px solid var(--table-border); }
+      .gen-io-col .input-keyframe-row { flex-wrap: wrap; justify-content: center; }
+      .gen-io-col .input-keyframe-row img { max-height: 140px; }
+      .gen-io-col .storyboard-pair { flex-direction: column; }
+      .gen-io-col .storyboard-pair img.storyboard { max-height: 200px; }
+      .gen-head-left { border-right: none; }
+      .gen-video-side { border-right: none; border-bottom: 1px solid var(--border); width: 100%; max-width: 240px; margin: 0 auto; }
+      .gen-video-side video { width: 100%; height: auto; }
+      .compare .arr { text-align: center; }
+    }
+
+    /* Lightbox */
+    .main img {
+      cursor: zoom-in;
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s;
+    }
+    .lightbox.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .lightbox img {
+      max-width: min(96vw, 1400px);
+      max-height: calc(92vh - 40px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+      cursor: default;
+    }
+    .lightbox-caption {
+      margin-top: 12px;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 13px;
+      text-align: center;
+      max-width: min(96vw, 1400px);
+      line-height: 1.5;
+    }
+    .lightbox-caption:empty {
+      display: none;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 32px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+    .lightbox-close:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-title">
+    晴野 CLEARFIELD
+    <small>2026 设计提案</small>
+  </div>
+  <nav class="toc" id="toc">
+    <a href="#cover">成品</a>
+    <a href="#s01">01 读懂 Brief</a>
+    <a href="#s02">02 创意构思</a>
+    <a href="#s03">03 广告制作</a>
+    <a href="#s04">04 Prompt 迭代</a>
+    <a href="#s05">05 体验报告</a>
+    <a href="#s06">06 部分过程</a>
+  </nav>
+</aside>
+
+<main class="main">
+
+  <!-- Cover -->
+  <section id="cover" class="cover-hero">
+    <div class="cover-hero-inner">
+      <p class="cover-eyebrow">腾讯 CDG · AIGC 短视频设计</p>
+      <h1 class="cover-title">晴野<span>CLEARFIELD</span></h1>
+      <p class="cover-tagline">户外生活品牌 保温杯</p>
+      <p class="cover-byline">易文迪 Wendi · 2026.09 设计提案</p>
+      <div class="cover-video-wrap">
+        <video src="assets/iterations/gen6-output.mp4" controls playsinline poster="assets/iterations/gen6-poster.jpg"></video>
+      </div>
+      <p class="cover-video-label">第六代成片 · 最终版 · 15s · 9:16 竖屏</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- 01 -->
+  <section id="s01">
+    <p class="section-num">01</p>
+    <h2>读懂 Brief</h2>
+
+    <div class="chain">
+      <span>业务理解</span><span class="arr">→</span>
+      <span>投放场景</span><span class="arr">→</span>
+      <span>目标人群</span><span class="arr">→</span>
+      <span>视频策略</span><span class="arr">→</span>
+      <span>具体方案</span>
+    </div>
+
+    <h3>品牌定位</h3>
+    <p>晴野 CLEARFIELD 是一个面向城市户外爱好者的轻户外生活方式品牌，以可靠而不累赘的产品设计，让人们更轻松地从城市走向自然。</p>
+    <p>Product Proof 70% × Lifestyle 30%</p>
+    <figure class="brand-logo-fig">
+      <img src="assets/logo-clearfield.png" alt="晴野 CLEARFIELD Logo">
+      <figcaption class="brand-imagery">品牌意象：晴朗 · 自然 · 开阔 · 轻盈 · 户外</figcaption>
+    </figure>
+
+    <h3>目标人群 · 25–35 岁</h3>
+    <div class="audience-block">
+      <figure class="audience-persona">
+        <img src="assets/brief/audience-persona.png" alt="城市户外爱好者画像">
+        <figcaption>城市 ↔ 山野 · 轻户外生活方式</figcaption>
+      </figure>
+      <div class="audience-copy">
+        <p class="audience-lead"><strong>城市户外爱好者</strong> — 在城市日常与户外活动之间切换。</p>
+        <p>工作与生活逐渐稳定，仍保持探索欲；需要兼顾日常携带便利与户外使用可靠性。</p>
+        <div class="audience-psy">
+          <span class="audience-psy-label">用户心理</span>
+          <p>想进入自然，但装备应该降低出发负担，而不是增加负担。</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>广告创意生成</h3>
+    <div class="chain">
+      <span>产品卖点</span><span class="arr">→</span>
+      <span>产品体验</span><span class="arr">→</span>
+      <span>视觉表达</span><span class="arr">→</span>
+      <span>广告叙事</span>
+    </div>
+
+    <div class="sell-cards">
+    <div class="sell-block">
+      <div class="sell-title">1. 便携随行｜空间上的轻便</div>
+
+      <div class="sell-part">
+        <div class="sell-part-label">产品</div>
+        <ul>
+          <li><strong>特点：</strong>600ml + 可装入背包侧袋</li>
+          <li><strong>理解：</strong>户外饮水容量 × 可以随身携带的产品尺寸</li>
+          <li><strong>产品 & 人的交互：</strong>人 × 背包 × 水杯；携带、取放、饮用与收纳</li>
+        </ul>
+      </div>
+
+      <div class="sell-part">
+        <div class="sell-part-label">产品 → 广告</div>
+        <ul>
+          <li><strong>视觉元素：</strong>背包侧袋 · 背起出发的动作 · 水杯尺寸/容量特写 · 倒水 · 一路随行</li>
+          <li><strong>剧情表达：</strong>人从城市出发 → 杯子装入侧袋 → 背起出发 → 环境从城市逐渐进入山野 → 杯子一路随行</li>
+        </ul>
+        <p class="target-msg">目标信息：600ml + 背包侧袋 → 这杯子装足够的水，尺寸又在我出去玩的时候很便携。</p>
+      </div>
+    </div>
+
+    <div class="sell-block">
+      <div class="sell-title">2. 24 小时恒温｜时间上的可靠</div>
+
+      <div class="sell-part">
+        <div class="sell-part-label">产品</div>
+        <ul>
+          <li><strong>特点：</strong>24 小时恒温</li>
+          <li><strong>理解：</strong>稳定的饮用体验。通过时间跨度才能被感知的性能。</li>
+          <li><strong>产品 × 人的交互：</strong>用户携带水杯 → 在不同时间饮用 → 收纳 / 放置 → 再次取用；核心是同一个产品在时间推移中的持续使用</li>
+        </ul>
+      </div>
+
+      <div class="sell-part">
+        <div class="sell-part-label">产品 → 广告</div>
+        <ul>
+          <li><strong>视觉元素：</strong>山野 · 帐篷 · 水杯 · 阳光与天色变化 · 黄昏 · 星空轨迹 · 黎明 · 一晚上后再次饮用</li>
+          <li><strong>剧情表达：</strong>白天进入山野 → 户外活动 → 冷热分屏强调「温度两极 / 冷热皆可」→ 黄昏扎营 → 水杯留在帐篷旁 → 天色与星空流动表现时间经过 → 次日清晨再次拿起，一脸愉快地饮用</li>
+        </ul>
+        <p class="target-msg">目标信息：24 小时恒温 → 水杯里的饮品经过好长时间都可以保持温度，让我有好的饮用体验。</p>
+      </div>
+    </div>
+    </div>
+
+    <h3>投放场景</h3>
+    <p class="spec-line">竖版 9:16｜15–20 秒｜无声可懂</p>
+
+    <h3>视频策略</h3>
+    <p>针对城市户外人群与信息流快速浏览场景，将产品功能融入一段「从城市到山野」的轻户外旅程；以<strong>空间变化</strong>表现便携随行，以<strong>时间变化</strong>表现 24 小时恒温，在可代入的使用场景中完成产品卖点传达。</p>
+  </section>
+
+  <hr>
+
+  <!-- 02 -->
+  <section id="s02">
+    <p class="section-num">02</p>
+    <h2>创意构思</h2>
+
+    <h3>关键词碎片</h3>
+    <ul>
+      <li>女性，男性，聚焦到女性（更可以凸显恒温和便携的痛点解决，场景设定为女生）</li>
+      <li>品牌意象：「晴野」天然让我联想到：晴朗、自然、开阔、轻盈、户外</li>
+      <li>从城市 → 山野的环境变迁。比如：家里出发，水杯放进背包侧袋后，镜头聚焦水杯 + 侧包，镜头缩小移走后到了野外，进行剧烈运动杯子不掉</li>
+      <li>放在帐篷外，一晚上过去 + 24h 过去（山谷里天色流动中的感觉，星星的轨迹图），水依然温热 + 600ml</li>
+      <li>Slogan：晴野 CLEARFIELD，陪你从城市到山野</li>
+    </ul>
+
+    <h3>关键词 → 广告文字细致故事线</h3>
+    <p class="spec-line">投放场景：竖版 9:16｜15–20 秒｜无声可懂</p>
+
+    <div class="story-beats">
+      <div class="story-beat">
+        <div class="story-beat-title">① 清晨｜城市家中 — 出发</div>
+        <ul>
+          <li>一男一女准备周末户外行程，收拾装备准备出发</li>
+          <li>女性往保温杯里加水：600ml，这个信息由半透明杯子内部图 + 文字表现</li>
+          <li>女性拿起保温杯，装水后顺手插入背包侧袋</li>
+          <li>镜头靠近水杯与背包的尺度关系，杯子完整、轻松地进入侧袋：轻松装进背包侧袋</li>
+        </ul>
+        <p class="beat-purpose">目的：第一时间出现产品 + 建立「装得够，又方便带」的认知</p>
+      </div>
+
+      <div class="story-beat">
+        <div class="story-beat-title">② 转场｜城市 → 山野</div>
+        <ul>
+          <li>女性背起背包出门，男性同行</li>
+          <li>镜头逐渐锁定背包侧袋中的 CLEARFIELD</li>
+          <li>以水杯作为视觉锚点完成 Match Cut：杯子与背包的位置基本保持不变，周围环境从室内 / 城市切换至开阔山野</li>
+          <li>两人开始徒步、穿越山路，杯子始终自然地随背包同行</li>
+        </ul>
+        <p class="beat-purpose">目的：不再用文字解释「便携」，而是让产品真正跟着人从城市进入山野</p>
+      </div>
+
+      <div class="story-beat">
+        <div class="story-beat-title">④ 剧情 bridge｜山野活动 — 冷热</div>
+        <ul>
+          <li>两人在山野中活动，女性从背包侧袋取出 CLEARFIELD 饮用</li>
+          <li>画面短暂形成左右分屏：
+            <ul class="sub-list">
+              <li>一侧表现冷饮 / 清凉的户外饮用体验</li>
+              <li>另一侧表现热饮 / 温暖的户外饮用体验</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="beat-purpose">目的：冷热状态 → 恒温</p>
+      </div>
+
+      <div class="story-beat">
+        <div class="story-beat-title">⑤ 次日清晨｜产品证明</div>
+        <ul>
+          <li>女生走到帐篷旁，将 CLEARFIELD 随手放在岩石 / 营地桌面上</li>
+          <li>人物离开画面，镜头留下水杯作为固定视觉锚点</li>
+          <li>随即进入核心镜头：黄昏 → 夜幕 → 星空轨迹 → 黎明</li>
+          <li>字幕：24 小时恒温</li>
+          <li>女生从帐篷出来，重新拿起杯子，打开饮用</li>
+          <li>通过动作 + 必要的视觉细节，让观众理解经过一整夜之后，它依然提供稳定的饮用体验</li>
+        </ul>
+      </div>
+
+      <div class="story-beat">
+        <div class="story-beat-title">⑥ Ending｜品牌</div>
+        <ul>
+          <li>新的一天日出，阳光洒向晴朗、开阔的山野</li>
+          <li>产品 Hero Shot + 品牌：晴野 CLEARFIELD，陪你从城市出走到山野的晴天</li>
+          <li>点击了解更多（CTA）</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>广告故事板</h3>
+    <div class="storyboard-row">
+      <figure class="sb-left">
+        <div class="sb-img-box">
+          <img src="assets/creative/storyboard-handdrawn.png" alt="手绘广告故事板">
+        </div>
+        <figcaption>手绘故事板 · Figma</figcaption>
+      </figure>
+      <figure class="sb-right">
+        <div class="sb-img-box">
+          <img src="assets/creative/storyboard-ai-comparison.png" alt="结合 AI 生成的最终故事板">
+        </div>
+        <figcaption>结合 AI 生成的最终故事板</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- 03 -->
+  <section id="s03">
+    <p class="section-num">03</p>
+    <h2>广告制作</h2>
+
+    <h3>AIGC 流 · 关键帧驱动</h3>
+    <p class="flow-principle">不是一条 prompt 端到端出片，而是以关键帧为锚点、人工筛选修正的半自动流水线。</p>
+    <div class="flow">
+      <div class="flow-step"><strong>定叙事</strong><span>Brief + Figma 手绘分镜</span></div>
+      <span class="arr">→</span>
+      <div class="flow-step"><strong>锁产品</strong><span>Rhino 3D 白模</span></div>
+      <span class="arr">→</span>
+      <div class="flow-step"><strong>做关键帧</strong><span>Gemini 渲染 + PS 精修 / 剪辑拼接</span></div>
+      <span class="arr">→</span>
+      <div class="flow-step"><strong>做动效</strong><span>即梦 Seedance @ 精修关键帧</span></div>
+    </div>
+    <div class="flow-loop">
+      <strong>迭代循环</strong> · Gemini 出图 → PS 精修 → 即梦生成 → 筛问题帧 → @ 重跑（六代 Prompt 迭代，见 04）
+    </div>
+
+    <h3>工具链</h3>
+    <div class="flow tool-chain">
+      <div class="flow-step"><strong>定叙事</strong><span>Figma</span></div>
+      <span class="arr">→</span>
+      <div class="flow-step"><strong>锁产品</strong><span>Rhino 3D</span></div>
+      <span class="arr">→</span>
+      <div class="flow-step"><strong>做关键帧</strong><span>Gemini · PS</span></div>
+      <span class="arr">→</span>
+      <div class="flow-step"><strong>做动效</strong><span>即梦 Seedance</span></div>
+    </div>
+    <p class="tool-chain-note">迭代工具同上 · Gemini 重出图 → PS 修正 → 即梦 @ 重跑</p>
+
+    <h3>产品建模 & AI 渲染</h3>
+    <div class="compare compare-3">
+      <figure><img src="assets/production/rhino-workspace.png" alt="Rhino 建模"><figcaption>Rhino 3D 建模</figcaption></figure>
+      <span class="arr">→</span>
+      <figure><img src="assets/production/rhino-product.png" alt="Rhino 白模"><figcaption>Rhino 白模 + Logo</figcaption></figure>
+      <span class="arr">→</span>
+      <figure><img src="assets/production/gemini-product.jpeg" alt="Gemini 渲染"><figcaption>Gemini 渲染 · 多角度参考</figcaption></figure>
+    </div>
+
+    <h3>风格参考 Moodboard</h3>
+    <div class="img-row">
+      <figure><img src="assets/moodboard/ref-01.jpg" alt=""><figcaption>山野徒步</figcaption></figure>
+      <figure><img src="assets/moodboard/ref-02.jpg" alt=""><figcaption>旅程转场</figcaption></figure>
+      <figure><img src="assets/moodboard/ref-03.jpg" alt=""><figcaption>露营休息</figcaption></figure>
+      <figure><img src="assets/moodboard/ref-04.jpg" alt=""><figcaption>森林饮水</figcaption></figure>
+    </div>
+
+  </section>
+
+  <hr>
+
+  <!-- 04 -->
+  <section id="s04">
+    <p class="section-num">04</p>
+    <h2>Prompt 迭代记录</h2>
+    <p class="flow-principle">每代输出中的「翻车」，即 AI 在该轮生成里的失效点，也是下一代迭代的修正依据。</p>
+
+    <div class="gen-block">
+      <div class="gen-title-bar">第一代</div>
+      <div class="gen-layout has-video">
+        <div class="gen-left">
+          <video src="assets/iterations/gen1-output.mp4" controls playsinline></video>
+        </div>
+        <div class="gen-table">
+          <div class="gen-table-head">
+            <div class="gen-hcol">输入</div>
+            <div class="gen-hcol">过程</div>
+            <div class="gen-hcol">输出</div>
+          </div>
+          <div class="gen-table-body">
+            <div class="gen-io-col">
+              <ul>
+                <li>广告文字细致故事线</li>
+                <li>产品正视图（一张）</li>
+                <li>投放场景描述</li>
+              </ul>
+              <p style="margin-top:10px;font-size:13px;color:var(--muted)">Agent 模式 · 广告文字故事线作为 Prompt 输入</p>
+            </div>
+            <div class="gen-io-col">
+              <ul>
+                <li>即梦文字输入 + 一个产品参考图</li>
+                <li>产品模式（VIP）</li>
+                <li>360 积分</li>
+              </ul>
+            </div>
+            <div class="gen-output-wrap">
+              <div class="gen-output-inner">
+                <div class="gen-output-half">
+                  <label class="pros">优点</label>
+                  <ul>
+                    <li>即梦产品模式很好！</li>
+                    <li>产品的形态很准确，只有一个正视图也够用了。节省我原本做三视图的时间。</li>
+                  </ul>
+                </div>
+                <div class="gen-output-half">
+                  <label class="cons">翻车</label>
+                  <ul>
+                    <li>没有广告文字（产品卖点）</li>
+                    <li>有很多 AI 感，尤其开头结尾</li>
+                    <li>结尾没有强调品牌</li>
+                    <li>几乎和我的分镜图无关，难控制</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-block">
+      <div class="gen-title-bar">第二代</div>
+      <div class="gen-layout has-video">
+        <div class="gen-left">
+          <video src="assets/iterations/gen2-output.mp4" controls playsinline></video>
+        </div>
+        <div class="gen-table">
+          <div class="gen-table-head">
+            <div class="gen-hcol">输入</div>
+            <div class="gen-hcol">过程</div>
+            <div class="gen-hcol">输出</div>
+          </div>
+          <div class="gen-table-body">
+            <div class="gen-io-col">
+              <ul>
+                <li>产品正视图（一张）</li>
+                <li>Gemini 做分镜 25 张图</li>
+                <li>Seedance 视频制作模式</li>
+              </ul>
+            </div>
+            <div class="gen-io-col">
+              <ul>
+                <li>Gemini 生成分镜，确认后再生成视频</li>
+                <li>Seedance 视频制作</li>
+              </ul>
+              <img class="storyboard" src="assets/iterations/gen2-storyboard.png" alt="Gemini 生成的 25 张分镜图">
+            </div>
+            <div class="gen-output-wrap">
+              <div class="gen-output-inner">
+                <div class="gen-output-half">
+                  <label class="pros">优点</label>
+                  <ul>
+                    <li>即梦产品模式很好！</li>
+                    <li>产品的形态很准确</li>
+                    <li>情节更接近我的故事板</li>
+                    <li>首尾产品 CTA 很好</li>
+                    <li>一点点抠了人物细节：女主角样貌与穿搭（浅黄防风外套、米色冷帽、红棕长发、橄榄绿背包）从视频开头到结尾保持统一</li>
+                  </ul>
+                </div>
+                <div class="gen-output-half">
+                  <label class="cons">翻车</label>
+                  <ul>
+                    <li>出现了异形</li>
+                    <li>AI 味还是太重</li>
+                    <li>文字太小，因为这个比例像是手机端广告</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-block">
+      <div class="gen-title-bar">第三代</div>
+      <div class="gen-layout has-video">
+        <div class="gen-left">
+          <video src="assets/iterations/gen3-output.mp4" controls playsinline></video>
+        </div>
+        <div class="gen-table">
+          <div class="gen-table-head">
+            <div class="gen-hcol">输入</div>
+            <div class="gen-hcol">过程</div>
+            <div class="gen-hcol">输出</div>
+          </div>
+          <div class="gen-table-body">
+            <div class="gen-io-col">
+              <ul>
+                <li>维持产品不变形：根据提示词生成了产品六视图</li>
+                <li>加入户外品牌画风参考，去 AI 感，重新生成 25 分镜图</li>
+              </ul>
+              <figure class="input-fig input-fig-compact">
+                <img src="assets/iterations/gen3-input-moodboard.png" alt="Gemini 画风参考输入">
+                <figcaption>4 张参考 +「参考这种感觉」</figcaption>
+              </figure>
+              <p class="prompt-annotate-compact">画风 → 文字：自然柔光 · 低饱和 · 浅景深 · 克制户外商业片（ad_config · 四代起纯文字）</p>
+            </div>
+            <div class="gen-io-col">
+              <ul>
+                <li>我发现这个分镜图也不需要完全准确，因为我还有文字在最终生成视频的时候做限制。最后版本再扣</li>
+              </ul>
+              <img class="storyboard" src="assets/iterations/gen3-storyboard.png" alt="Gemini 生成的分镜图">
+            </div>
+            <div class="gen-output-wrap">
+              <div class="gen-output-inner">
+                <div class="gen-output-half">
+                  <label class="pros">优点</label>
+                  <ul>
+                    <li>即梦产品模式很好！</li>
+                    <li>产品的形态很准确</li>
+                  </ul>
+                </div>
+                <div class="gen-output-half">
+                  <label class="cons">翻车</label>
+                  <ul>
+                    <li>有些镜头很跳跃，不如 2 代。是时候拼凑 2 和 3 了</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-block">
+      <div class="gen-title-bar">第四代</div>
+      <div class="gen-layout has-video">
+        <div class="gen-left">
+          <video src="assets/iterations/gen4-output.mp4" controls playsinline></video>
+        </div>
+        <div class="gen-table">
+          <div class="gen-table-head">
+            <div class="gen-hcol">输入</div>
+            <div class="gen-hcol">过程</div>
+            <div class="gen-hcol">输出</div>
+          </div>
+          <div class="gen-table-body">
+            <div class="gen-io-col">
+              <ul>
+                <li>产品六视图</li>
+                <li>提示词文字修改</li>
+                <li>拼凑 2 和 3 的分镜图（Human + AI）</li>
+              </ul>
+            </div>
+            <div class="gen-io-col">
+              <ul>
+                <li>这次生成时间很久</li>
+                <li>生出来的结果莫名其妙，我 regenerate 了几次，可能因为不是之前标准的 25 图</li>
+              </ul>
+              <img class="storyboard" src="assets/iterations/gen4-storyboard.png" alt="Gemini 生成的分镜图">
+            </div>
+            <div class="gen-output-wrap">
+              <div class="gen-output-inner">
+                <div class="gen-output-half">
+                  <label class="pros">优点</label>
+                  <ul>
+                    <li>有一定的合并效果</li>
+                  </ul>
+                </div>
+                <div class="gen-output-half">
+                  <label class="cons">翻车</label>
+                  <ul>
+                    <li>某些镜头还是不够准确，我打算把关键信息的镜头重新生成，都在五代的即梦环节里 @ 出来</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-block">
+      <div class="gen-title-bar">第五代</div>
+      <div class="gen-layout has-video">
+        <div class="gen-left">
+          <video src="assets/final.mp4" controls playsinline></video>
+        </div>
+        <div class="gen-table">
+          <div class="gen-table-head">
+            <div class="gen-hcol">输入</div>
+            <div class="gen-hcol">过程</div>
+            <div class="gen-hcol">输出</div>
+          </div>
+          <div class="gen-table-body">
+            <div class="gen-io-col">
+              <ul>
+                <li>细细扣镜头，内容完全 make sense，高保真</li>
+                <li>Seedance 手动 @ 容易出错的一些镜头</li>
+                <li>图一 + 图二（正视）→ 生成图三标准关键帧</li>
+              </ul>
+              <div class="input-keyframe-row">
+                <figure class="input-fig">
+                  <img src="assets/iterations/gen5-input-01.png" alt="图一">
+                  <figcaption>图一</figcaption>
+                </figure>
+                <span class="input-arr">+</span>
+                <figure class="input-fig">
+                  <img src="assets/iterations/gen5-input-02.png" alt="图二">
+                  <figcaption>图二</figcaption>
+                </figure>
+                <span class="input-arr">→</span>
+                <figure class="input-fig">
+                  <img src="assets/iterations/gen5-input-keyframe.png" alt="图三标准关键帧">
+                  <figcaption>图三</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="gen-io-col">
+              <ul>
+                <li>细扣每一帧关键帧，删掉非自然关键帧</li>
+                <li>PS 处理后拼接完整分镜，再 Seedance 手动 @ 生成</li>
+              </ul>
+              <div class="storyboard-pair">
+                <figure class="storyboard-fig">
+                  <img class="storyboard" src="assets/iterations/gen5-storyboard-blanks.png" alt="删掉非自然关键帧后留下的空白">
+                  <figcaption>图一 · 删掉非自然关键帧后留下的空白</figcaption>
+                </figure>
+                <figure class="storyboard-fig">
+                  <img class="storyboard" src="assets/iterations/gen5-storyboard-final.png" alt="PS 处理后拼接的完整关键帧">
+                  <figcaption>图二 · PS 处理后拼接的完整关键帧</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="gen-output-wrap">
+              <div class="gen-output-inner">
+                <div class="gen-output-half">
+                  <label class="pros">优点</label>
+                  <ul>
+                    <li>内容逻辑通顺，叙事完整</li>
+                    <li>关键镜头准确，产品形态稳定</li>
+                    <li>接近最终交付版本</li>
+                  </ul>
+                </div>
+                <div class="gen-output-half">
+                  <label class="cons">翻车</label>
+                  <ul>
+                    <li>人物从头到尾穿搭、发色都有所改变。六代需仔细匹配所有关键内容，保持角色形象一致</li>
+                    <li>仍有 3 帧存在问题；</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-block">
+      <div class="gen-title-bar">第六代</div>
+      <div class="gen-layout has-video">
+        <div class="gen-left">
+          <video src="assets/iterations/gen6-output.mp4" controls playsinline></video>
+        </div>
+        <div class="gen-table">
+          <div class="gen-table-head">
+            <div class="gen-hcol">输入</div>
+            <div class="gen-hcol">过程</div>
+            <div class="gen-hcol">输出</div>
+          </div>
+          <div class="gen-table-body">
+            <div class="gen-io-col">
+              <ul>
+                <li>五代成品中 3 帧问题关键帧</li>
+              </ul>
+              <div class="storyboard-pair">
+                <figure class="storyboard-fig">
+                  <img class="storyboard" src="assets/iterations/gen6-keyframe-before.png" alt="修改前关键帧">
+                  <figcaption>修改前 · 五代问题帧</figcaption>
+                </figure>
+                <figure class="storyboard-fig">
+                  <img class="storyboard" src="assets/iterations/gen6-keyframe-after.png" alt="修改后关键帧">
+                  <figcaption>修改后 · Gemini 重出</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="gen-io-col">
+              <ul>
+                <li>Gemini 重出图 → 即梦重跑</li>
+              </ul>
+              <figure class="input-fig input-fig-lg">
+                <img src="assets/iterations/gen6-process-seedance.png" alt="即梦 Seedance @ 关键帧">
+                <figcaption>即梦输出 · 多处 @ 关键帧；@ 的图均为 PS 精修准确图</figcaption>
+              </figure>
+            </div>
+            <div class="gen-output-wrap">
+              <div class="gen-output-inner">
+                <div class="gen-output-half">
+                  <label class="pros">优点</label>
+                  <ul>
+                    <li>修正了问题帧，成片稳定性提升</li>
+                  </ul>
+                </div>
+                <div class="gen-output-half">
+                  <label class="cons">翻车</label>
+                  <ul><li class="placeholder">待补充</li></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <hr>
+
+  <!-- 05 -->
+  <section id="s05">
+    <p class="section-num">05</p>
+    <h2>体验报告</h2>
+
+    <h3>超出预期</h3>
+    <ul>
+      <li>Gemini 产品渲染 — Rhino 白模 + 提示词可得到高度可控的多角度产品图</li>
+      <li>关键帧质量 — 加入 moodboard 后单帧达到商业摄影水准</li>
+      <li>即梦 AI — 简单动作（走路、喝水）自然度超出预期</li>
+      <li>即梦产品模式 — 针对广告场景有专门模型，即便只给一张简单产品图，全片全过程各角度产品形态也能保持很完美；幸好没有再多花时间建三视图、渲染模板</li>
+    </ul>
+
+    <h3>翻车时刻</h3>
+    <p class="flow-principle">综合六代迭代，以下为 AI 反复出现的翻车类型（各代具体实例见 04）。</p>
+    <ul>
+      <li>角色形象难以统一 — 从头到尾穿搭、发色都会漂移，只能通过关键帧 @ 来规定；提示词里着重强调角色一致性，并将穿搭整理成规范的文字参考</li>
+      <li>跨镜头产品一致性 — 杯体造型/Logo 位置每次都有漂移</li>
+      <li>复杂转场 — Match Cut 和延时是 AI 视频的天花板</li>
+      <li>文字生成 — 画面内字幕完全不可靠，必须人工叠加</li>
+    </ul>
+
+    <h3>结语</h3>
+    <p>我大概的感受是：AI 更像把 Brief 推到可视素材的加速器——创意指导仍要花时间做方向判断和质量筛选，但也许不必再陷在大量重复的执行里。</p>
+  </section>
+
+  <hr>
+
+  <!-- 06 -->
+  <section id="s06" class="process-appendix">
+    <p class="section-num">06</p>
+    <h2>部分过程</h2>
+    <div class="process-appendix-row">
+      <figure class="process-appendix-item">
+        <div class="process-appendix-img">
+          <img src="assets/process/brief-notes.png" alt="广告策略文字">
+        </div>
+        <figcaption class="process-appendix-caption">Brief 文字</figcaption>
+      </figure>
+      <figure class="process-appendix-item">
+        <div class="process-appendix-img">
+          <img src="assets/process/figma-workspace.png" alt="制作过程记录">
+        </div>
+        <figcaption class="process-appendix-caption">制作笔记 · 素材</figcaption>
+      </figure>
+    </div>
+  </section>
+
+</main>
+
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <button type="button" class="lightbox-close" aria-label="关闭">&times;</button>
+  <img src="" alt="">
+  <p class="lightbox-caption"></p>
+</div>
+
+<script>
+  const tocLinks = document.querySelectorAll('.toc a');
+  const sections = document.querySelectorAll('section[id]');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+
+  // 故事板左右图片等高
+  function syncStoryboardHeights() {
+    const row = document.querySelector('.storyboard-row');
+    if (!row) return;
+    const imgs = row.querySelectorAll('.sb-img-box img');
+    const boxes = row.querySelectorAll('.sb-img-box');
+    if (imgs.length < 2) return;
+
+    imgs.forEach(img => { img.style.height = ''; });
+    boxes.forEach(box => { box.style.height = ''; });
+
+    const colWLeft = row.querySelector('.sb-left .sb-img-box')?.clientWidth || boxes[0].clientWidth;
+    const colWRight = row.querySelector('.sb-right .sb-img-box')?.clientWidth || boxes[1].clientWidth;
+    let maxH = 0;
+    imgs.forEach((img, i) => {
+      if (!img.naturalWidth) return;
+      const colW = i === 0 ? colWLeft : colWRight;
+      const h = colW * (img.naturalHeight / img.naturalWidth);
+      maxH = Math.max(maxH, h);
+    });
+
+    if (maxH <= 0) return;
+    imgs.forEach((img, i) => {
+      img.style.height = maxH + 'px';
+      if (i === 0) {
+        img.style.width = 'auto';
+        img.style.maxWidth = '400px';
+      } else {
+        img.style.width = '100%';
+        img.style.maxWidth = '100%';
+      }
+    });
+    boxes.forEach(box => { box.style.height = maxH + 'px'; });
+  }
+
+  document.querySelectorAll('.storyboard-row img').forEach(img => {
+    if (img.complete) syncStoryboardHeights();
+    else img.addEventListener('load', syncStoryboardHeights);
+  });
+  window.addEventListener('resize', syncStoryboardHeights);
+  syncStoryboardHeights();
+
+  function syncProcessAppendixHeights() {
+    const row = document.querySelector('.process-appendix-row');
+    if (!row) return;
+    const imgs = row.querySelectorAll('.process-appendix-img img');
+    const boxes = row.querySelectorAll('.process-appendix-img');
+    if (imgs.length < 2) return;
+
+    imgs.forEach(img => { img.style.height = ''; });
+    boxes.forEach(box => { box.style.height = ''; });
+
+    const colW = boxes[0].clientWidth;
+    let maxH = 0;
+    imgs.forEach(img => {
+      if (!img.naturalWidth) return;
+      maxH = Math.max(maxH, colW * (img.naturalHeight / img.naturalWidth));
+    });
+
+    if (maxH <= 0) return;
+    boxes.forEach(box => { box.style.height = maxH + 'px'; });
+    imgs.forEach(img => { img.style.height = '100%'; });
+  }
+
+  document.querySelectorAll('.process-appendix-row img').forEach(img => {
+    if (img.complete) syncProcessAppendixHeights();
+    else img.addEventListener('load', syncProcessAppendixHeights);
+  });
+  window.addEventListener('resize', syncProcessAppendixHeights);
+  syncProcessAppendixHeights();
+
+  // 图片点击放大
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = lightbox.querySelector('img');
+  const lbCaption = lightbox.querySelector('.lightbox-caption');
+  const lbClose = lightbox.querySelector('.lightbox-close');
+
+  function openLightbox(img) {
+    const caption = img.closest('figure')?.querySelector('figcaption')?.textContent?.trim();
+    lbImg.src = img.currentSrc || img.src;
+    lbImg.alt = img.alt || '';
+    lbCaption.textContent = caption || img.alt || '';
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    lbImg.removeAttribute('src');
+    lbCaption.textContent = '';
+  }
+
+  document.querySelectorAll('.main img').forEach(img => {
+    img.addEventListener('click', () => openLightbox(img));
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  lbImg.addEventListener('click', (e) => e.stopPropagation());
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+  });
+</script>
+</body>
+</html>
