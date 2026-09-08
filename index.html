@@ -559,47 +559,6 @@
       align-self: stretch;
     }
     .gen-table-body .gen-io-col:last-of-type { border-right: none; }
-    .gen-table-gen6 .gen-table-head,
-    .gen-table-gen6 .gen-table-body {
-      grid-template-columns: 1fr 1.12fr;
-    }
-    .gen-table-gen6 .gen-table-head .gen-hcol:last-child {
-      border-right: none;
-    }
-    .gen-table-output {
-      border-top: 1.5px solid var(--table-border);
-      background: #fff;
-    }
-    .gen-table-output .gen-hcol-output {
-      padding: 10px 16px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: 0.06em;
-      background: #f3f5f3;
-      border-bottom: 1.5px solid var(--table-border);
-    }
-    .gen-table-output .gen-output-wrap {
-      padding: 16px;
-    }
-    .gen-table-output .gen-output-inner {
-      flex-direction: row;
-      gap: 0;
-    }
-    .gen-table-output .gen-output-half {
-      flex: 1;
-    }
-    .gen-table-output .gen-output-half:first-child {
-      border-bottom: none;
-      border-right: 1.5px dashed var(--table-border);
-      padding-bottom: 0;
-      margin-bottom: 0;
-      padding-right: 16px;
-      margin-right: 0;
-    }
-    .gen-table-output .gen-output-half:last-child {
-      padding-left: 16px;
-    }
     .gen-video-side {
       padding: 0;
       border-right: 1px solid var(--border);
@@ -1028,15 +987,6 @@
       .gen-hcol { border-right: none; }
       .gen-io-col { border-right: none; border-bottom: 1.5px solid var(--table-border); }
       .gen-io-col:not(:last-child), .gen-output-wrap { border-right: none; border-left: none; border-bottom: 1.5px solid var(--table-border); }
-      .gen-table-output .gen-output-inner { flex-direction: column; }
-      .gen-table-output .gen-output-half:first-child {
-        border-right: none;
-        border-bottom: 1.5px dashed var(--table-border);
-        padding-bottom: 14px;
-        margin-bottom: 14px;
-        padding-right: 0;
-      }
-      .gen-table-output .gen-output-half:last-child { padding-left: 0; }
       .gen-io-col .input-keyframe-row { flex-wrap: wrap; justify-content: center; }
       .gen-io-col .input-keyframe-row img { max-height: 140px; }
       .gen-io-col .storyboard-pair { flex-direction: column; }
@@ -1685,10 +1635,11 @@
         <div class="gen-left">
           <video src="assets/iterations/gen6-output.mp4" controls playsinline></video>
         </div>
-        <div class="gen-table gen-table-gen6">
+        <div class="gen-table">
           <div class="gen-table-head">
             <div class="gen-hcol">输入</div>
             <div class="gen-hcol">过程</div>
+            <div class="gen-hcol">输出</div>
           </div>
           <div class="gen-table-body">
             <div class="gen-io-col">
@@ -1715,9 +1666,6 @@
                 <figcaption>即梦输出 · 多处 @ 关键帧；@ 的图均为 PS 精修准确图</figcaption>
               </figure>
             </div>
-          </div>
-          <div class="gen-table-output">
-            <div class="gen-hcol gen-hcol-output">输出</div>
             <div class="gen-output-wrap">
               <div class="gen-output-inner">
                 <div class="gen-output-half">
