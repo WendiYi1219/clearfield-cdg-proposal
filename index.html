@@ -689,32 +689,38 @@
     .gen-io-col .input-fig-lg figcaption {
       margin-top: 4px;
     }
-    .gen-io-col .gen6-hero-fig {
-      margin-top: 14px;
+    .gen-io-col .gen6-hero-row {
       display: flex;
-      align-items: center;
       justify-content: center;
-      gap: 14px;
       width: 100%;
+      margin-top: 14px;
+    }
+    .gen-io-col .gen6-hero-fig {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0;
+      width: auto;
+      max-width: 100%;
     }
     .gen-io-col .gen6-hero-fig img {
       width: auto;
       max-width: none;
-      max-height: 150px;
+      max-height: 140px;
       flex-shrink: 0;
       display: block;
       margin: 0;
       object-fit: contain;
     }
     .gen-io-col .gen6-hero-fig figcaption {
-      flex: 0 1 auto;
+      flex: 0 0 auto;
       width: auto;
-      max-width: 9em;
+      max-width: 10em;
       margin: 0;
       text-align: left;
       font-size: 15px;
       color: var(--muted);
-      line-height: 1.5;
+      line-height: 1.55;
     }
     .gen-io-col .prompt-annotate-compact {
       margin-top: 6px;
@@ -1022,9 +1028,10 @@
       .gen-io-col .input-keyframe-row img { max-height: 140px; }
       .gen-io-col .storyboard-pair { flex-direction: column; }
       .gen-io-col .storyboard-pair img.storyboard { max-height: 200px; }
+      .gen-io-col .gen6-hero-row { justify-content: center; }
       .gen-io-col .gen6-hero-fig { flex-direction: column; align-items: center; }
       .gen-io-col .gen6-hero-fig figcaption { max-width: none; text-align: center; }
-      .gen-io-col .gen6-hero-fig img { max-height: 200px; }
+      .gen-io-col .gen6-hero-fig img { max-height: 180px; }
       .gen-head-left { border-right: none; }
       .gen-video-side { border-right: none; border-bottom: 1px solid var(--border); width: 100%; max-width: 240px; margin: 0 auto; }
       .gen-video-side video { width: 100%; height: auto; }
@@ -1690,10 +1697,12 @@
                   <figcaption>修改后 · Gemini 重出</figcaption>
                 </figure>
               </div>
-              <figure class="input-fig gen6-hero-fig">
-                <img src="assets/iterations/gen6-hero-image.png" alt="女主角正面全身角色参考图">
-                <figcaption>为了统一角色，我用 AI 生成了女主角的正面全身角色参考图</figcaption>
-              </figure>
+              <div class="gen6-hero-row">
+                <figure class="input-fig gen6-hero-fig">
+                  <img src="assets/iterations/gen6-hero-image.png" alt="女主角正面全身角色参考图">
+                  <figcaption>为了统一角色，我用 AI 生成了女主角的正面全身角色参考图</figcaption>
+                </figure>
+              </div>
             </div>
             <div class="gen-io-col">
               <ul>
